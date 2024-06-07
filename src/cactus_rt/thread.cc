@@ -17,6 +17,9 @@ namespace cactus_rt {
 void* Thread::RunThread(void* data) {
   auto* thread = static_cast<Thread*>(data);
   thread->config_.scheduler->SetSchedAttr();
+#ifdef __linux__
+  pthread_setname_np(0, name_.c_str()):
+#endif
 
   thread->tracer_->SetTid();
   if (thread->app_ != nullptr) {
