@@ -18,7 +18,7 @@ void* Thread::RunThread(void* data) {
   auto* thread = static_cast<Thread*>(data);
   thread->config_.scheduler->SetSchedAttr();
 #ifdef __linux__
-  pthread_setname_np(0, name_.c_str()):
+  pthread_setname_np(0, thread->Name().c_str());
 #endif
 
   thread->tracer_->SetTid();
